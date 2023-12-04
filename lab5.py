@@ -178,39 +178,51 @@ print(f"Para un sistema M/M/1 con λ={lambda_} y ν={nu}, el porcentaje de tiemp
 
 import math
 
-def fila(L_q, P):
-    # Calcula el porcentaje de clientes que hacen fila de L_q espacios antes de recibir el servicio
-    if L_q < 0 or L_q > 100 or P < 0 or P > 100:
-        raise ValueError("Los parámetros deben estar en el rango [0, 100]")
-    
-    fila_porcentaje = 100 - P
-    return fila_porcentaje
+def fila(lambda_, nu, L_q, P, tiempo_simulacion=10000):
+    """
+    Determina el porcentaje de clientes que hacen fila de L_q espacios antes de recibir el servicio.
 
-def servidores(L_q, P):
-    # Encuentra el número de servidores necesarios para satisfacer un parámetro dado de calidad del servicio
-    if L_q < 0 or L_q > 100 or P < 0 or P > 100:
-        raise ValueError("Los parámetros deben estar en el rango [0, 100]")
+    :param lambda_: Tasa promedio de llegadas (lambda).
+    :param nu: Tasa promedio de servicio (nu).
+    :param L_q: Cantidad de clientes en fila.
+    :param P: Porcentaje de tiempo deseado.
+    :param tiempo_simulacion: Número de iteraciones para la simulación.
+    :return: Porcentaje de clientes en fila.
+    """
+    resultados_sistema = sistema(lambda_, nu, tiempo_simulacion)
+    tiempo_en_cola = resultados_sistema["tiempo_en_cola"]
 
+    fraccion_tiempo_cumple_condicion = np.sum(tiempo_en_cola > 0) / tiempo_simulacion
+    porcentaje_cumple_condicion = (1 - fraccion_tiempo_cumple_condicion) * 100
+
+    return porcentaje_cumple_condicion
+
+def servidores(lambda_, nu, L_q, P):
+    """
+    Encuentra el número de servidores necesarios para satisfacer un parámetro dado de calidad del servicio.
+
+    :param lambda_: Tasa promedio de llegadas (lambda).
+    :param nu: Tasa promedio de servicio (nu).
+    :param L_q: Cantidad de clientes en fila.
+    :param P: Porcentaje de tiempo deseado.
+    :return: Número de servidores necesarios.
+    """
     s = math.ceil(L_q / (100 - P))
     return s
 
-def tiempo(L_q, P):
-    # Encuentra el tiempo promedio de servicio necesario para satisfacer un parámetro dado de calidad del servicio
-    if L_q < 0 or L_q > 100 or P < 0 or P > 100:
-        raise ValueError("Los parámetros deben estar en el rango [0, 100]")
+def tiempo(lambda_, nu, L_q, P, tiempo_simulacion=10000):
+    """
+    Encuentra el tiempo promedio de servicio necesario para satisfacer un parámetro dado de calidad del servicio.
 
-    nu = (100 - P) / L_q
-    return nu
+    :param lambda_: Tasa promedio de llegadas (lambda).
+    :param nu: Tasa promedio de servicio (nu).
+    :param L_q: Cantidad de clientes en fila.
+    :param P: Porcentaje de tiempo deseado.
+    :param tiempo_simulacion: Número de iteraciones para la simulación.
+    :return: Tiempo promedio de servicio necesario.
+    """
+    resultados_sistema = sistema(lambda_, nu, tiempo_simulacion)
+    tiempo_promedio_servicio = np.mean(resultados_sistema["tiempo_en_sistema"])
 
-# Ejemplos de uso:
-L_q = 5  # Cantidad de clientes en fila
-P = 95   # Porcentaje de tiempo deseado
+    return tiempo_promedio_servicio
 
-porcentaje_fila = fila(L_q, P)
-print(f"Porcentaje de clientes en fila: {porcentaje_fila}%")
-
-num_servidores = servidores(L_q, P)
-print(f"Número de servidores necesarios: {num_servidores}")
-
-velocidad_servicio = tiempo(L_q, P)
-print(f"Tiempo promedio de servicio necesario: {velocidad_servicio}")
