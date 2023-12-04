@@ -175,3 +175,42 @@ L_q = 5
 porcentaje_tiempo_Lq = fila(lambda_, nu, L_q)  # Por ejemplo, para L_q = 5
 # Imprimir el resultado con formato
 print(f"Para un sistema M/M/1 con λ={lambda_} y ν={nu}, el porcentaje de tiempo que la fila es mayor o igual a {L_q} es aproximadamente {porcentaje_tiempo_Lq:.2f}%.")
+
+import math
+
+def fila(L_q, P):
+    # Calcula el porcentaje de clientes que hacen fila de L_q espacios antes de recibir el servicio
+    if L_q < 0 or L_q > 100 or P < 0 or P > 100:
+        raise ValueError("Los parámetros deben estar en el rango [0, 100]")
+    
+    fila_porcentaje = 100 - P
+    return fila_porcentaje
+
+def servidores(L_q, P):
+    # Encuentra el número de servidores necesarios para satisfacer un parámetro dado de calidad del servicio
+    if L_q < 0 or L_q > 100 or P < 0 or P > 100:
+        raise ValueError("Los parámetros deben estar en el rango [0, 100]")
+
+    s = math.ceil(L_q / (100 - P))
+    return s
+
+def tiempo(L_q, P):
+    # Encuentra el tiempo promedio de servicio necesario para satisfacer un parámetro dado de calidad del servicio
+    if L_q < 0 or L_q > 100 or P < 0 or P > 100:
+        raise ValueError("Los parámetros deben estar en el rango [0, 100]")
+
+    nu = (100 - P) / L_q
+    return nu
+
+# Ejemplos de uso:
+L_q = 5  # Cantidad de clientes en fila
+P = 95   # Porcentaje de tiempo deseado
+
+porcentaje_fila = fila(L_q, P)
+print(f"Porcentaje de clientes en fila: {porcentaje_fila}%")
+
+num_servidores = servidores(L_q, P)
+print(f"Número de servidores necesarios: {num_servidores}")
+
+velocidad_servicio = tiempo(L_q, P)
+print(f"Tiempo promedio de servicio necesario: {velocidad_servicio}")
