@@ -226,3 +226,16 @@ def tiempo(lambda_, nu, L_q, P, tiempo_simulacion=10000):
 
     return tiempo_promedio_servicio
 
+# Ejemplo de uso
+lambda_val = 6  # Tasa de llegada
+nu_val = 3      # Tasa de servicio
+L_q_val = 1       # Cantidad de clientes en fila
+P_val = 90        # Porcentaje de tiempo deseado
+
+porcentaje_en_fila = fila(lambda_val, nu_val, L_q_val, P_val)
+num_servidores_necesarios = servidores(lambda_val, nu_val, L_q_val, P_val)
+tiempo_promedio_servicio = tiempo(lambda_val, nu_val, L_q_val, P_val)
+
+print(f"Porcentaje de clientes en fila: {porcentaje_en_fila}%")
+print(f"Número de servidores necesarios: {num_servidores_necesarios}")
+print(f"Tiempo promedio de servicio necesario: {tiempo_promedio_servicio} segundos.")
