@@ -77,21 +77,6 @@ def sistema(lambda_, nu, num_clientes):
         "tiempo_en_sistema": tiempo_en_sistema,
         "tiempo_en_cola": tiempo_en_cola
     }
-def visualizacion(tiempos_llegada, tiempos_servicio):
-    """
-    Crea una visualización del sistema M/M/1.
-
-    :param tiempos_llegada: Array de tiempos de llegada de los clientes.
-    :param tiempos_servicio: Array de tiempos de servicio de los clientes.
-    """
-    plt.figure(figsize=(10, 6))
-    plt.hist(tiempos_llegada, bins=30, alpha=0.5, label='Llegadas')
-    plt.hist(tiempos_servicio, bins=30, alpha=0.5, label='Servicios')
-    plt.xlabel('Tiempo')
-    plt.ylabel('Frecuencia')
-    plt.title('Distribución de tiempos de llegada y servicio en un sistema M/M/1')
-    plt.legend()
-    plt.show()
 def visualizacion(resultado_sistema):
     """
     Crea una visualización para el sistema M/M/1.
