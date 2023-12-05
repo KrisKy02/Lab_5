@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import math
 
 def llegada(tiempos_llegada):
     """
@@ -175,8 +176,6 @@ L_q = 5
 porcentaje_tiempo_Lq = fila(lambda_, nu, L_q)  # Por ejemplo, para L_q = 5
 # Imprimir el resultado con formato
 print(f"Para un sistema M/M/1 con λ={lambda_} y ν={nu}, el porcentaje de tiempo que la fila es mayor o igual a {L_q} es aproximadamente {porcentaje_tiempo_Lq:.2f}%.")
-
-import math
 
 def fila(lambda_, nu, L_q, P, tiempo_simulacion=10000):
     """
