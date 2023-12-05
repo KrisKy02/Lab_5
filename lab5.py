@@ -77,7 +77,7 @@ def sistema(lambda_, nu, num_clientes):
         "tiempo_en_sistema": tiempo_en_sistema,
         "tiempo_en_cola": tiempo_en_cola
     }
-def visualizacion(resultado_sistema):
+def visualizacion(resultado_sistema,lambda_,nu):
     """
     Crea una visualización para el sistema M/M/1.
 
@@ -128,41 +128,8 @@ def fila(lambda_, nu, L_q, max_estado=100):
 
     return probabilidad_fila_Lq * 100
 
-# Leer el archivo CSV
-df = pd.read_csv('clientes.csv')
 
-# Extraer los datos necesarios
-tiempos_llegada = df['llegada'].to_numpy()
-tiempos_servicio = df['servicio'].to_numpy()
-
-# Aplicar las funciones
-lambda_ = llegada(tiempos_llegada)
-nu = servicio(tiempos_servicio)
-parametros_sistema = parametros(lambda_, nu)
-
-# Mostrar los resultados
-print("Lambda:", lambda_)
-print("Nu:", nu)
-print("Parámetros del sistema:", parametros_sistema)
-resultado_sistema = sistema(lambda_, nu, 100)
-# Crear un DataFrame a partir del diccionario de resultados
-df_resultados = pd.DataFrame(resultado_sistema)
-
-# Opcional: Redondear los resultados para una mejor visualización
-df_resultados = df_resultados.round(2)
-
-# Imprimir el DataFrame
-print(df_resultados)
-visualizacion(resultado_sistema)
-
-vector_probabilidades = probabilidad(lambda_, nu, 10)
-print(f'El vector de estado estable es: {vector_probabilidades}')
-L_q = 5
-porcentaje_tiempo_Lq = fila(lambda_, nu, L_q)  # Por ejemplo, para L_q = 5
-# Imprimir el resultado con formato
-print(f"Para un sistema M/M/1 con λ={lambda_} y ν={nu}, el porcentaje de tiempo que la fila es mayor o igual a {L_q} es aproximadamente {porcentaje_tiempo_Lq:.2f}%.")
-
-def fila(lambda_, nu, L_q, P, tiempo_simulacion=10000):
+def fila(lambda_, nu, L_q, P_val, tiempo_simulacion=10000):
     """
     Determina el porcentaje de clientes que hacen fila de L_q espacios antes de recibir el servicio.
 
@@ -181,7 +148,7 @@ def fila(lambda_, nu, L_q, P, tiempo_simulacion=10000):
 
     return porcentaje_cumple_condicion
 
-def servidores(lambda_, nu, L_q, P):
+def servidores(lambda_, nu, L_q, P_val):
     """
     Encuentra el número de servidores necesarios para satisfacer un parámetro dado de calidad del servicio.
 
@@ -191,10 +158,10 @@ def servidores(lambda_, nu, L_q, P):
     :param P: Porcentaje de tiempo deseado.
     :return: Número de servidores necesarios.
     """
-    s = math.ceil(L_q / (100 - P))
+    s = math.ceil(L_q / (100 - P_val))
     return s
 
-def tiempo(lambda_, nu, L_q, P, tiempo_simulacion=10000):
+def tiempo(lambda_, nu, L_q, P_val, tiempo_simulacion=10000):
     """
     Encuentra el tiempo promedio de servicio necesario para satisfacer un parámetro dado de calidad del servicio.
 
@@ -209,17 +176,3 @@ def tiempo(lambda_, nu, L_q, P, tiempo_simulacion=10000):
     tiempo_promedio_servicio = np.mean(resultados_sistema["tiempo_en_sistema"])
 
     return tiempo_promedio_servicio
-
-# Ejemplo de uso
-lambda_val = 6  # Tasa de llegada
-nu_val = 3      # Tasa de servicio
-L_q_val = 1       # Cantidad de clientes en fila
-P_val = 90        # Porcentaje de tiempo deseado
-
-porcentaje_en_fila = fila(lambda_val, nu_val, L_q_val, P_val)
-num_servidores_necesarios = servidores(lambda_val, nu_val, L_q_val, P_val)
-tiempo_promedio_servicio = tiempo(lambda_val, nu_val, L_q_val, P_val)
-
-print(f"Porcentaje de clientes en fila: {porcentaje_en_fila}%")
-print(f"Número de servidores necesarios: {num_servidores_necesarios}")
-print(f"Tiempo promedio de servicio necesario: {tiempo_promedio_servicio} segundos.")
