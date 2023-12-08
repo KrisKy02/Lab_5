@@ -27,14 +27,6 @@ def revisar_parametros(tolerancia=1e-2):
     assert abs(p_i - 0.42) < tolerancia , f"Fallo en revisar_llegada. Resultado: {p_i}, Esperado: {0.42}"
     assert abs(q_i - 0.58) < tolerancia , f"Fallo en revisar_llegada. Resultado: {q_i}, Esperado: {0.58}"
 
-def revisar_sistema(tolerancia=1e-2):
-    # TODO: Agregar pruebas para la función sistema
-    pass
-
-def revisar_visualizacion(tolerancia=1e-2):
-    # TODO: Agregar pruebas para la función visualizacion
-    pass
-
 def revisar_probabilidad(tolerancia=1e-2):
     # TODO: Agregar pruebas para la función probabilidad
     pass
@@ -42,7 +34,9 @@ def revisar_probabilidad(tolerancia=1e-2):
 def revisar_fila(tolerancia=1e-2):
     # TODO: Agregar pruebas para la función fila
     pass
-
+def revisar_fila_c(tolerancia=1e-2):
+    # TODO: Agregar pruebas para la función fila
+    pass
 def revisar_servidores(tolerancia=1e-2):
     # TODO: Agregar pruebas para la función servidores
     pass
@@ -88,9 +82,9 @@ lambda_val = 0.035  # Tasa de llegada
 nu_val = 0.048      # Tasa de servicio
 L_q_val = 5       # Cantidad de clientes en fila
 
-porcentaje_en_fila = lab5.fila(lambda_val, nu_val, L_q_val, P_val)
-num_servidores_necesarios = lab5.servidores(lambda_val, nu_val, L_q_val, P_val)
-tiempo_promedio_servicio = lab5.tiempo(lambda_val, nu_val, L_q_val, P_val)
+porcentaje_en_fila = lab5.fila_c(lambda_, nu, L_q, P_val)
+num_servidores_necesarios = lab5.servidores(lambda_, nu, L_q, P_val)
+tiempo_promedio_servicio = lab5.tiempo(lambda_, nu, L_q, P_val)
 
 print(f"Porcentaje de clientes en fila: {porcentaje_en_fila}%")
 print(f"Número de servidores necesarios: {num_servidores_necesarios}")

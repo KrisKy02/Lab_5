@@ -129,7 +129,7 @@ def fila(lambda_, nu, L_q, max_estado=100):
     return probabilidad_fila_Lq * 100
 
 
-def fila(lambda_, nu, L_q, P_val, tiempo_simulacion=10000):
+def fila_c(lambda_, nu, L_q, P_val, tiempo_simulacion=10000):
     """
     Determina el porcentaje de clientes que hacen fila de L_q espacios antes de recibir el servicio.
 
