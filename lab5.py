@@ -148,7 +148,7 @@ def fila_c(lambda_, nu, L_q, P_val, tiempo_simulacion=10000):
 
     return porcentaje_cumple_condicion
 
-def servidores(lambda_, nu, L_q, P_val):
+def servidores(lambda_, nu, L_q, P):
     """
     Encuentra el número de servidores necesarios para satisfacer un parámetro dado de calidad del servicio.
 
@@ -158,7 +158,7 @@ def servidores(lambda_, nu, L_q, P_val):
     :param P: Porcentaje de tiempo deseado.
     :return: Número de servidores necesarios.
     """
-    s = math.ceil(L_q / (100 - P_val))
+    s = math.ceil(L_q / (100 - P))
     return s
 
 def tiempo(lambda_, nu, L_q, P_val, tiempo_simulacion=10000):

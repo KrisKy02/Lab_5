@@ -28,23 +28,40 @@ def revisar_parametros(tolerancia=1e-2):
     assert abs(q_i - 0.58) < tolerancia , f"Fallo en revisar_llegada. Resultado: {q_i}, Esperado: {0.58}"
 
 def revisar_probabilidad(tolerancia=1e-2):
-    # TODO: Agregar pruebas para la función probabilidad
-    pass
+    max_estado = 100
+    resultado = lab5.probabilidad(lambda_, nu,max_estado)
+    probabilidades_esperadas = [0.28, 0.20, 0.15, 0.10432465114590479, 0.075, 0.05365499698510028, 0.038, 0.028, 0.020, 0.014, 0.01]
+    
+    for i in range(1+1):
+        assert abs(resultado[i] - probabilidades_esperadas[i]) < tolerancia, \
+            f"Fallo en revisar_probabilidad. Resultado[{i}]: {resultado[i]}, Esperado: {probabilidades_esperadas[i]}"
 
 def revisar_fila(tolerancia=1e-2):
-    # TODO: Agregar pruebas para la función fila
-    pass
-def revisar_fila_c(tolerancia=1e-2):
-    # TODO: Agregar pruebas para la función fila
-    pass
+    resultado = lab5.fila(lambda_, nu, L_q, P_val)
+    porcentaje_esperado = 13.60
+    
+    assert abs(resultado - porcentaje_esperado) < tolerancia, f"Fallo en revisar_fila. Resultado: {resultado}, Esperado: {porcentaje_esperado}"
+    
+def revisar_fila_c(tolerancia=10):
+    resultado = lab5.fila_c(lambda_, nu, L_q, P_val)
+    porcentaje_esperado = 30.12
+    
+    assert abs(resultado - porcentaje_esperado) < tolerancia, \
+        f"Fallo en revisar_fila_c. Resultado: {resultado}, Esperado: {porcentaje_esperado}"
+    
 def revisar_servidores(tolerancia=1e-2):
-    # TODO: Agregar pruebas para la función servidores
-    pass
+    resultado = lab5.servidores(lambda_, nu, L_q, P_val)
+    servidores_esperados = 1
+    
+    assert resultado == servidores_esperados, \
+        f"Fallo en revisar_servidores. Resultado: {resultado}, Esperado: {servidores_esperados}"
 
-def revisar_tiempo(tolerancia=1e-2):
-    # TODO: Agregar pruebas para la función tiempo
-    pass
-
+def revisar_tiempo(tolerancia=10):
+    resultado = lab5.tiempo(lambda_, nu, L_q, P_val)
+    tiempo_esperado = 64.77
+    
+    assert abs(resultado - tiempo_esperado) < tolerancia, \
+        f"Fallo en revisar_tiempo. Resultado: {resultado}, Esperado: {tiempo_esperado}"
 # Agregar cualquier observación adicional o comentarios necesarios
 # Leer el archivo CSV
 df = pd.read_csv('clientes.csv')
@@ -94,6 +111,9 @@ print(f"Tiempo promedio de servicio necesario: {tiempo_promedio_servicio}")
 revisar_llegada(tolerancia=1e-2)
 revisar_servicio(tolerancia=1e-2)
 revisar_parametros(tolerancia=1e-2)
-
-
+revisar_probabilidad(tolerancia=1e-2)
+revisar_fila(tolerancia=1e-2)
+revisar_fila_c(tolerancia=10)
+revisar_servidores(tolerancia=1e-2)
+revisar_tiempo(tolerancia=10)
 print("Todas las pruebas pasaron exitosamente.")
