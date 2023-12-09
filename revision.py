@@ -101,13 +101,6 @@ def revisar_tiempo(tolerancia=10):
     )
 
 
-# Agregar cualquier observación adicional o comentarios necesarios
-# Leer el archivo CSV
-
-
-df = pd.read_csv('clientes.csv')
-
-
 # Aplicar las funciones
 lambda_ = cadena.llegada(tiempos_llegada)
 nu = cadena.servicio(tiempos_servicio)
