@@ -35,6 +35,31 @@ Este repositorio contiene un módulo de Python diseñado para el análisis de un
 Se puede utilizar este módulo para realizar análisis de sistemas M/M/1 mediante las funciones proporcionadas. A continuación, se muestra un ejemplo básico de uso ubicado en el archivo "revision.py":
 
 ```python
+"""
+Análisis de Datos por medio de "cadena.py".
+
+Este script utiliza el módulo "cadena.py" para realizar
+el análisis de un sistema M/M/1. El script lee los datos
+de un archivo CSV y luego utiliza las funciones del módulo
+para realizar el análisis.
+
+
+El script se estructura de la siguiente manera:
+- Importar el módulo "cadena.py".
+- Leer el archivo CSV.
+- Extraer los datos necesarios.
+- Aplicar las funciones.
+- Mostrar los resultados.
+- Ejecutar las pruebas.
+
+
+Estudiantes:
+
+Kristel Herrera Rodríguez C13769
+Oscar Porras Silesky C16042
+Fabrizzio Herrera Calvo B83849
+"""
+
 import pandas as pd
 import cadena
 # Leer el archivo CSV
