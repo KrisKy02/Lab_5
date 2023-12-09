@@ -2,7 +2,7 @@
 
 Este repositorio contiene un módulo de Python diseñado para el análisis de un sistema M/M/1 en el contexto de la teoría de colas. Este módulo fue desarrollado como parte del Laboratorio 5 para el curso "IE0405 - Modelos Probabilísticos de Señales y Sistemas" de la Universidad de Costa Rica.
 
-## Funciones del Módulo
+## Funciones del Módulo "cadena.py"
 
 1. **llegada(tiempos_llegada):** Calcula el parámetro lambda (tasa promedio de llegadas) para un proceso de Poisson.
 
