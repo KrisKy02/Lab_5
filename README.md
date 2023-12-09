@@ -32,7 +32,7 @@ Este repositorio contiene un módulo de Python diseñado para el análisis de un
 
 ## Uso del Módulo
 
-Se puede utilizar este módulo para realizar análisis de sistemas M/M/1 mediante las funciones proporcionadas. A continuación, se muestra un ejemplo básico de uso ubicado en el archivo "rwvision.py":
+Se puede utilizar este módulo para realizar análisis de sistemas M/M/1 mediante las funciones proporcionadas. A continuación, se muestra un ejemplo básico de uso ubicado en el archivo "revision.py":
 
 ```python
 import pandas as pd
