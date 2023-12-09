@@ -1,3 +1,44 @@
+"""
+Laboratorio 4.
+
+IE0405 - Modelos Probabilísticos de Señales y Sistemas
+Universidad de Costa Rica
+
+Módulo de Cadena de Markov para el Laboratorio 5.
+
+Este módulo contiene un conjunto de funciones diseñadas para realizar el
+análisis de un sistema M/M/1.
+
+Funciones:
+- llegada: Calcula el parámetro lambda (tasa promedio de llegadas)
+           para un proceso de Poisson.
+- servicio: Calcula el parámetro nu (tasa promedio de servicio)
+            para el proceso de servicio.
+- parametros: Calcula los parámetros Omega_i, p_i y q_i
+              de un sistema M/M/1 para cada estado.
+- sistema: Simula un sistema M/M/1 con un número dado de clientes.
+- visualizacion: Crea una visualización para el sistema M/M/1.
+- probabilidad: Calcula el vector de estado estable con la
+                probabilidad de cada estado en un sistema M/M/1.
+- fila: Calcula el porcentaje del tiempo que la fila del
+        sistema está por encima de un cierto valor L_q.
+- fila_c: Determina el porcentaje de clientes que hacen fila de L_q
+          espacios antes de recibir el servicio.
+- servidores: Encuentra el número de servidores necesarios
+              para satisfacer un parámetro dado de calidad del servicio.
+- tiempo: Encuentra el tiempo promedio de servicio necesario
+          para satisfacer un parámetro dado de calidad del servicio.
+
+
+Estudiantes:
+
+Kristel Herrera Rodríguez C13769
+Oscar Porras Silesky C16042
+Fabrizzio Herrera Calvo B83849
+
+"""
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 import math
