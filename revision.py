@@ -1,4 +1,27 @@
-# revision.py
+"""
+Análisis de Datos por medio de "cadena.py".
+
+Este script utiliza el módulo "cadena.py" para realizar
+el análisis de un sistema M/M/1. El script lee los datos
+de un archivo CSV y luego utiliza las funciones del módulo
+para realizar el análisis.
+
+
+El script se estructura de la siguiente manera:
+- Importar el módulo "cadena.py".
+- Leer el archivo CSV.
+- Extraer los datos necesarios.
+- Aplicar las funciones.
+- Mostrar los resultados.
+- Ejecutar las pruebas.
+
+
+Estudiantes:
+
+Kristel Herrera Rodríguez C13769
+Oscar Porras Silesky C16042
+Fabrizzio Herrera Calvo B83849
+"""
 
 
 import pandas as pd
@@ -11,6 +34,8 @@ tiempos_servicio = df['servicio'].to_numpy()
 
 
 def revisar_llegada(tolerancia=1e-2):
+    # Esta función revisa la función llegada
+    # con los datos de prueba
     resultado = lambda_
     assert abs(resultado - lambda_val) < tolerancia, (
         f"Fallo en revisar_llegada. Resultado: {resultado}, "
@@ -19,6 +44,8 @@ def revisar_llegada(tolerancia=1e-2):
 
 
 def revisar_servicio(tolerancia=1e-2):
+    # Esta función revisa la función servicio
+    # con los datos de prueba
     resultado = nu
     assert abs(resultado - nu_val) < tolerancia, (
         f"Fallo en revisar_llegada. Resultado: {resultado}, Esperado: {nu_val}"
@@ -26,6 +53,8 @@ def revisar_servicio(tolerancia=1e-2):
 
 
 def revisar_parametros(tolerancia=1e-2):
+    # Esta función revisa la función parametros
+    # con los datos de prueba
     Omega_i = lambda_ + nu
     p_i = lambda_ / Omega_i
     q_i = nu / Omega_i
@@ -47,6 +76,8 @@ def revisar_parametros(tolerancia=1e-2):
 
 
 def revisar_probabilidad(tolerancia=1e-2):
+    # Esta función revisa la función probabilidad
+    # con los datos de prueba
     max_estado = 100
     resultado = cadena.probabilidad(lambda_, nu, max_estado)
     probabilidades_esperadas = [0.28, 0.20, 0.15, 0.10432465114590479, 0.075,
@@ -62,6 +93,8 @@ def revisar_probabilidad(tolerancia=1e-2):
 
 
 def revisar_fila(tolerancia=1e-2):
+    # Esta función revisa la función fila
+    # con los datos de prueba
     resultado = cadena.fila(lambda_, nu, L_q, P_val)
     porcentaje_esperado = 13.60
 
@@ -72,6 +105,8 @@ def revisar_fila(tolerancia=1e-2):
 
 
 def revisar_fila_c(tolerancia=10):
+    # Esta función revisa la función fila_c
+    # con los datos de prueba
     resultado = cadena.fila_c(lambda_, nu, L_q, P_val)
     porcentaje_esperado = 30.12
 
@@ -82,6 +117,8 @@ def revisar_fila_c(tolerancia=10):
 
 
 def revisar_servidores(tolerancia=1e-2):
+    # Esta función revisa la función servidores
+    # con los datos de prueba
     resultado = cadena.servidores(lambda_, nu, L_q, P_val)
     servidores_esperados = 1
 
@@ -92,6 +129,8 @@ def revisar_servidores(tolerancia=1e-2):
 
 
 def revisar_tiempo(tolerancia=10):
+    # Esta función revisa la función tiempo
+    # con los datos de prueba
     resultado = cadena.tiempo(lambda_, nu, L_q, P_val)
     tiempo_esperado = 64.77
 
